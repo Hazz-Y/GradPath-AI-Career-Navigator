@@ -1,0 +1,204 @@
+/* ROI Calculator Page */
+.roi-page {
+  padding-top: calc(var(--nav-height) + 32px);
+  padding-bottom: 64px;
+}
+
+.roi-header { margin-bottom: 32px; }
+.roi-header h1 { font-size: 2rem; }
+
+.roi-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.roi-inputs {
+  padding: 28px;
+  position: sticky;
+  top: calc(var(--nav-height) + 16px);
+}
+
+.roi-inputs h3 { margin-bottom: 20px; font-size: 1.15rem; }
+
+.roi-inputs .input-group {
+  margin-bottom: 16px;
+}
+
+.roi-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.roi-summary-card {
+  padding: 24px;
+  text-align: center;
+}
+
+.roi-card-label {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.roi-card-value {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.roi-card-sub {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Cost Breakdown */
+.cost-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cost-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.cost-row.total {
+  font-weight: 700;
+  color: var(--text-primary);
+  border-bottom: none;
+  padding-top: 12px;
+  font-size: 1rem;
+}
+
+/* Salary Grid */
+.salary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.salary-item {
+  text-align: center;
+  padding: 16px 8px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-md);
+}
+
+.salary-label {
+  display: block;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.salary-value {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--emerald-light);
+}
+
+.salary-inr {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Chart */
+.chart-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chart-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.chart-label {
+  width: 32px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: right;
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+.chart-bar-container {
+  flex: 1;
+  height: 24px;
+  background: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-bar.earnings {
+  height: 100%;
+  background: linear-gradient(90deg, var(--emerald), var(--emerald-light));
+  border-radius: var(--radius-sm);
+  transition: width 1s var(--ease-out);
+  min-width: 2px;
+}
+
+.chart-bar.cost-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--rose);
+  z-index: 2;
+}
+
+.chart-value {
+  width: 80px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+.chart-value.positive { color: var(--emerald-light); }
+.chart-value.negative { color: var(--rose); }
+
+.chart-legend {
+  display: flex;
+  gap: 24px;
+  margin-top: 16px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+@media (max-width: 900px) {
+  .roi-layout {
+    grid-template-columns: 1fr;
+  }
+  .roi-inputs { position: static; }
+  .roi-summary-grid { grid-template-columns: 1fr; }
+  .salary-grid { grid-template-columns: repeat(2, 1fr); }
+}

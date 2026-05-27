@@ -1,0 +1,99 @@
+{
+  "countries": {
+    "USA": {
+      "avg_living_cost_yearly": 18000,
+      "currency": "USD",
+      "visa_cost": 510,
+      "work_permit_post_study": "OPT (1-3 years)",
+      "salary_multiplier": 1.0
+    },
+    "UK": {
+      "avg_living_cost_yearly": 14000,
+      "currency": "GBP",
+      "visa_cost": 490,
+      "work_permit_post_study": "Graduate Route (2 years)",
+      "salary_multiplier": 0.75
+    },
+    "Canada": {
+      "avg_living_cost_yearly": 12000,
+      "currency": "CAD",
+      "visa_cost": 255,
+      "work_permit_post_study": "PGWP (1-3 years)",
+      "salary_multiplier": 0.72
+    },
+    "Germany": {
+      "avg_living_cost_yearly": 10200,
+      "currency": "EUR",
+      "visa_cost": 75,
+      "work_permit_post_study": "18-month Job Seeker Visa",
+      "salary_multiplier": 0.65
+    },
+    "Switzerland": {
+      "avg_living_cost_yearly": 22000,
+      "currency": "CHF",
+      "visa_cost": 150,
+      "work_permit_post_study": "6-month extension",
+      "salary_multiplier": 0.95
+    },
+    "Australia": {
+      "avg_living_cost_yearly": 16000,
+      "currency": "AUD",
+      "visa_cost": 710,
+      "work_permit_post_study": "Post-Study Work Visa (2-4 years)",
+      "salary_multiplier": 0.70
+    },
+    "Singapore": {
+      "avg_living_cost_yearly": 14000,
+      "currency": "SGD",
+      "visa_cost": 90,
+      "work_permit_post_study": "Employment Pass",
+      "salary_multiplier": 0.68
+    },
+    "Netherlands": {
+      "avg_living_cost_yearly": 12500,
+      "currency": "EUR",
+      "visa_cost": 210,
+      "work_permit_post_study": "Orientation Year (1 year)",
+      "salary_multiplier": 0.62
+    },
+    "Sweden": {
+      "avg_living_cost_yearly": 11000,
+      "currency": "SEK",
+      "visa_cost": 150,
+      "work_permit_post_study": "6-month extension",
+      "salary_multiplier": 0.58
+    },
+    "France": {
+      "avg_living_cost_yearly": 10500,
+      "currency": "EUR",
+      "visa_cost": 99,
+      "work_permit_post_study": "APS Visa (1 year)",
+      "salary_multiplier": 0.55
+    },
+    "India": {
+      "avg_living_cost_yearly": 3000,
+      "currency": "INR",
+      "visa_cost": 0,
+      "work_permit_post_study": "N/A",
+      "salary_multiplier": 0.28
+    }
+  },
+  "salaryProgression": {
+    "CS": { "year1": 1.0, "year3": 1.45, "year5": 1.95, "year10": 2.8 },
+    "MBA": { "year1": 1.0, "year3": 1.55, "year5": 2.2, "year10": 3.5 },
+    "Data Science": { "year1": 1.0, "year3": 1.4, "year5": 1.85, "year10": 2.6 },
+    "Engineering": { "year1": 1.0, "year3": 1.35, "year5": 1.75, "year10": 2.4 },
+    "default": { "year1": 1.0, "year3": 1.3, "year5": 1.7, "year10": 2.3 }
+  },
+  "exchangeRates": {
+    "USD": 83.5,
+    "GBP": 105.0,
+    "EUR": 91.0,
+    "CAD": 62.0,
+    "AUD": 55.0,
+    "CHF": 95.0,
+    "SGD": 62.5,
+    "SEK": 8.0,
+    "INR": 1
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "eligibility": {
+    "min_age": 18,
+    "max_age": 35,
+    "citizenship": "Indian",
+    "min_cibil_coborrower": 650,
+    "good_cibil": 700,
+    "excellent_cibil": 750
+  },
+  "loanRanges": {
+    "collateral": {
+      "min": 500000,
+      "max": 15000000,
+      "interest_rate_min": 9.5,
+      "interest_rate_max": 12.5
+    },
+    "noCollateral": {
+      "min": 300000,
+      "max": 7500000,
+      "interest_rate_min": 11.0,
+      "interest_rate_max": 14.5
+    }
+  },
+  "interestFactors": {
+    "top50_university": -0.5,
+    "stem_course": -0.3,
+    "high_gpa": -0.4,
+    "high_test_score": -0.3,
+    "coborrower_income_high": -0.5,
+    "good_cibil": -0.5,
+    "excellent_cibil": -1.0,
+    "no_collateral": 1.5,
+    "high_loan_amount": 0.5
+  },
+  "repaymentOptions": [
+    { "years": 5, "label": "5 Years (Aggressive)" },
+    { "years": 7, "label": "7 Years (Standard)" },
+    { "years": 10, "label": "10 Years (Comfortable)" },
+    { "years": 15, "label": "15 Years (Extended)" }
+  ],
+  "moratoriumPeriod": {
+    "during_study": true,
+    "post_study_months": 6
+  },
+  "documentChecklist": {
+    "identity": ["Aadhaar Card", "PAN Card", "Passport"],
+    "academic": ["10th Marksheet", "12th Marksheet", "UG Transcripts", "Degree Certificate", "GRE/GMAT Score Report", "IELTS/TOEFL Score Report"],
+    "admission": ["University Offer Letter", "I-20/CAS Letter", "Fee Structure"],
+    "financial_student": ["Bank Statements (6 months)", "Scholarship Letter (if any)"],
+    "financial_coborrower": ["Income Tax Returns (2 years)", "Salary Slips (3 months)", "Bank Statements (6 months)", "Property Documents (if collateral)"],
+    "others": ["Passport-size Photographs", "Loan Application Form"]
+  },
+  "lenders": [
+    {
+      "name": "GradFin Capital",
+      "type": "NBFC",
+      "interest_range": "10.5% - 13.5%",
+      "max_amount": "₹1.5 Cr",
+      "processing_fee": "1%",
+      "collateral_required": "Above ₹40L",
+      "processing_days": 5,
+      "features": ["100% financing", "No prepayment penalty", "Online tracking"]
+    },
+    {
+      "name": "EduVault Finance",
+      "type": "NBFC",
+      "interest_range": "11.0% - 14.0%",
+      "max_amount": "₹1 Cr",
+      "processing_fee": "1.5%",
+      "collateral_required": "Above ₹50L",
+      "processing_days": 3,
+      "features": ["Fast approval", "Flexible EMI", "Co-applicant support"]
+    },
+    {
+      "name": "ScholarEdge Bank",
+      "type": "Bank",
+      "interest_range": "9.5% - 12.0%",
+      "max_amount": "₹2 Cr",
+      "processing_fee": "0.5%",
+      "collateral_required": "Above ₹20L",
+      "processing_days": 10,
+      "features": ["Lowest rates", "Tax benefits", "Moratorium period"]
+    }
+  ]
+}
