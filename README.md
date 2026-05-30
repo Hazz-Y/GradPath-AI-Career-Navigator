@@ -1,166 +1,194 @@
-# GradPath AI - AI-First Study Abroad Platform for Indian Students
+<div align="center">
 
-A full-stack intelligent platform that combines university matching, loan advisory, SOP generation, and gamified profile scoring into a single conversational interface.
+# GradPath AI — Career Navigator
 
-![React](https://img.shields.io/badge/React-19-61DAFB?style=flat-square&logo=react&logoColor=white)
+**AI-first study abroad platform with conversational university matching, loan advisory, and SOP generation — powered by Groq streaming inference on Llama 3.3 70B**
+
+![React 19](https://img.shields.io/badge/React-19-4F46E5?style=flat-square&logo=react&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat-square&logo=node.js&logoColor=white)
-![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat-square&logo=vite&logoColor=white)
-![Groq](https://img.shields.io/badge/Groq-Llama_3.3_70B-F55036?style=flat-square)
-![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3FCF8E?style=flat-square&logo=supabase&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-deployed-000000?style=flat-square&logo=vercel&logoColor=white)
-![Render](https://img.shields.io/badge/Render-deployed-46E3B7?style=flat-square&logo=render&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)
-![Hackathon](https://img.shields.io/badge/Built_for-TenzorX_2025-gold?style=flat-square)
+![Vite](https://img.shields.io/badge/Vite-8-7C3AED?style=flat-square&logo=vite&logoColor=white)
+![Groq](https://img.shields.io/badge/Groq-Llama_3.3_70B-F59E0B?style=flat-square)
+![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3B82F6?style=flat-square&logo=supabase&logoColor=white)
+![Vercel](https://img.shields.io/badge/Frontend-Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
+![Render](https://img.shields.io/badge/Backend-Render-10B981?style=flat-square&logo=render&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-10B981?style=flat-square)
+![Hackathon](https://img.shields.io/badge/Built_for-TenzorX_2025-F59E0B?style=flat-square)
 
-> The study abroad process for Indian students is fragmented across dozens of disconnected tools - university shortlisting, loan comparison, SOP writing, timeline planning - each requiring separate research and manual effort. GradPath AI unifies these into four computation engines behind a single conversational interface, powered by Groq SDK streaming inference on Llama 3.3 70B. The platform was built for the TenzorX Hackathon 2025 and is deployed as a split-stack application on Vercel (frontend) and Render (backend).
+</div>
 
 ---
 
-## Core Engines
+## The Problem
 
-| Engine | Responsibility | Method |
-|---|---|---|
-| `ScoreEngine` | Dream Score computation (0-1000) | 5 weighted pillars, rule-based scoring |
-| `RecEngine` | University discovery and profile matching | Cosine similarity across 55+ programs, 11 countries |
-| `LoanEngine` | Loan eligibility and EMI simulation | NBFC rule set, interest rate model, break-even calculator |
-| `ROIEngine` | Return on investment projection | 10-year salary curve, break-even analysis |
+The study abroad process for Indian students is fragmented across dozens of disconnected tools — university shortlisting, loan comparison, SOP writing, timeline planning — each requiring separate research, accounts, and manual effort. There's no unified system that takes a student's profile and delivers end-to-end guidance in a single session.
 
-## Feature Modules
+GradPath AI consolidates four computation engines behind a single conversational interface, with Groq SDK streaming inference on Llama 3.3 70B enabling real-time SOP generation and multi-turn advisory. Built for TenzorX Hackathon 2025 and deployed as a split-stack application on Vercel (frontend) and Render (backend).
 
-| Module | Description |
-|---|---|
-| **PathFinder** | Profile-to-university matching engine using cosine similarity over a 55-program dataset, with Groq-powered admit-probability reasoning per match |
-| **LoanOracle** | Stateful conversational loan advisor with in-memory session storage, eligibility gating via `LoanEngine`, multi-turn application flow, and pre-filled confirmation |
-| **ScoreBooster** | Live SOP generation via Groq SDK streaming (chunked HTTP transfer), with follow-up AI review returning structured feedback |
-| **GrowthEngine** | Autonomous engagement loop generating WhatsApp-style nudges, AI blog content, and real-time platform metrics |
-| **Dream Score** | Gamified readiness metric (0-1000) computed across academic strength, financial readiness, profile completeness, target alignment, and application progress |
-| **Referral System** | Unique referral code generation with score-based rewards and progress tracking |
+---
 
-## Architecture
+## What This Does
 
-```text
-Client (React 19 / Vite)
-      |
-      | HTTP / streaming
-      v
-Express.js Server (Node.js)
-      |
-      |-- /api/pathfinder   --> RecEngine (cosine similarity, JSON dataset)
-      |-- /api/dream-score  --> ScoreEngine (weighted pillars)
-      |-- /api/loan-oracle  --> LoanEngine (eligibility rules, EMI calc)
-      |-- /api/roi          --> ROIEngine (salary projection model)
-      |-- /api/score-booster --> Groq SDK --> Llama 3.3 70B (streaming)
-      |-- /api/loan-oracle/chat --> Groq SDK --> Llama 3.3 70B (streaming)
-      |
-      v
-Supabase (PostgreSQL) - optional; app falls back to mock data if unconfigured
+A full-stack intelligent platform that combines **university matching**, **loan advisory**, **SOP generation**, and **gamified profile scoring** into a conversational experience.
+
+- **55+ university programs** across 11 countries indexed and queryable via cosine similarity
+- **Real-time SOP generation** using chunked HTTP streaming from Groq SDK
+- **Loan eligibility gating** with EMI simulation and break-even analysis
+- **10-year ROI projection** for salary curves by field and geography
+- **Dream Score** — gamified readiness metric (0–1000) across five weighted pillars
+
+---
+
+## System Architecture
+
+```mermaid
+graph TB
+    subgraph Client["Frontend — React 19 / Vite"]
+        UI["Conversational UI"]
+        DASH["Dashboard Components"]
+        STREAM["Streaming Response Handler"]
+    end
+
+    subgraph Server["Backend — Express.js / Node.js"]
+        API["REST API Router"]
+        
+        subgraph Engines["Computation Engines"]
+            SCORE["ScoreEngine<br/>Dream Score (0-1000)<br/>5 weighted pillars"]
+            REC["RecEngine<br/>Cosine Similarity<br/>55+ programs · 11 countries"]
+            LOAN["LoanEngine<br/>NBFC eligibility rules<br/>EMI + interest model"]
+            ROI["ROIEngine<br/>10-year salary curves<br/>break-even analysis"]
+        end
+
+        GROQ["Groq SDK<br/>Llama 3.3 70B<br/>Streaming inference"]
+    end
+
+    subgraph Data["Data Layer"]
+        SUPA["Supabase<br/>PostgreSQL"]
+        MOCK["Mock Data Fallback"]
+    end
+
+    UI -->|HTTP / Streaming| API
+    API -->|/api/dream-score| SCORE
+    API -->|/api/pathfinder| REC
+    API -->|/api/loan-oracle| LOAN
+    API -->|/api/roi| ROI
+    API -->|/api/score-booster| GROQ
+    API -->|/api/loan-oracle/chat| GROQ
+    GROQ -->|Chunked Transfer| STREAM
+    API --> SUPA
+    API -.->|Fallback| MOCK
+
+    style Client fill:#1e1b4b,stroke:#4F46E5,color:#e0e7ff
+    style Server fill:#1e1b4b,stroke:#3B82F6,color:#e0e7ff
+    style Engines fill:#0f172a,stroke:#7C3AED,color:#e0e7ff
+    style Data fill:#1e1b4b,stroke:#10B981,color:#e0e7ff
 ```
 
-Streaming responses from the Groq SDK are piped directly to the client via chunked HTTP transfer encoding. This enables live SOP generation and conversational output in `LoanOracle` and `ScoreBooster` without polling or WebSocket overhead.
+---
 
 ## Tech Stack
 
-**Frontend** - React 19, Vite, React Router 7, Vanilla CSS (custom design system defined in `src/index.css` with CSS custom properties), deployed on Vercel.
+| Layer | Technology | Version | Role |
+|:---|:---|:---|:---|
+| **Frontend** | React | 19 | UI components, state management |
+| **Bundler** | Vite | 8 | Fast HMR, build tooling |
+| **Backend** | Express.js | 4.x | REST API, streaming response handler |
+| **Runtime** | Node.js | 18+ | Server-side JavaScript execution |
+| **LLM** | Groq SDK → Llama 3.3 70B | — | SOP generation, conversational loan advisory |
+| **Database** | Supabase (PostgreSQL) | — | User profiles, session data (optional) |
+| **Frontend Hosting** | Vercel | — | Edge-deployed frontend |
+| **Backend Hosting** | Render | — | API server deployment |
 
-**Backend** - Node.js, Express.js, Groq SDK (`llama-3.3-70b-versatile`), in-memory session store for `LoanOracle` conversations, deployed on Render. Optional: Supabase (PostgreSQL) via `@supabase/supabase-js`.
+---
+
+## Feature Modules
+
+| Module | What It Does | Under the Hood |
+|:---|:---|:---|
+| **PathFinder** | Profile-to-university matching | Cosine similarity over a 55-program dataset → Groq-powered admit-probability reasoning per match |
+| **LoanOracle** | Multi-turn conversational loan advisor | Stateful sessions with in-memory storage → eligibility gating via `LoanEngine` → pre-filled confirmation flow |
+| **ScoreBooster** | Live SOP generation with AI review | Groq SDK streaming (chunked HTTP transfer) → follow-up review returning structured feedback |
+| **GrowthEngine** | Autonomous engagement loop | WhatsApp-style nudges, AI blog content, and real-time platform metrics |
+| **Dream Score** | Gamified readiness metric (0–1000) | Computed across academic strength, financial readiness, profile completeness, target alignment, and application progress |
+| **Referral System** | Score-based referral rewards | Unique code generation with progress tracking and score-linked bonuses |
+
+---
+
+## Getting Started
+
+### Prerequisites
+- Node.js 18+
+- Groq API Key ([console.groq.com](https://console.groq.com))
+- Supabase project (optional — falls back to mock data)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/Hazz-Y/GradPath-AI-Career-Navigator.git
+cd GradPath-AI-Career-Navigator
+
+# Backend setup
+cd server
+npm install
+cp .env.example .env
+# Add your GROQ_API_KEY and SUPABASE_URL to .env
+
+# Start the backend
+npm run dev
+# → http://localhost:3001
+
+# Frontend setup (new terminal)
+cd ../client
+npm install
+
+# Start the frontend
+npm run dev
+# → http://localhost:5173
+```
+
+### Environment Variables
+
+| Variable | Required | Description |
+|:---|:---|:---|
+| `GROQ_API_KEY` | Yes | Groq API key for Llama 3.3 70B inference |
+| `SUPABASE_URL` | Optional | Supabase project URL |
+| `SUPABASE_ANON_KEY` | Optional | Supabase anonymous key |
+
+---
 
 ## Project Structure
 
 ```
-gradpath-ai/
-├── public/                     # Static assets (favicon, icons)
-├── src/                        # React frontend (Vite entry)
-│   ├── components/             # Reusable UI components (Navbar, Leaderboard, ScoreCard)
-│   ├── lib/                    # Third-party client setup (Supabase)
-│   ├── pages/                  # One file per route (10 pages)
-│   ├── utils/                  # API client and pure utility functions
-│   ├── App.jsx                 # Router + AppContext provider
-│   ├── main.jsx                # ReactDOM entry point
-│   └── index.css               # Design system (CSS custom properties, base styles)
-├── server/                     # Express backend
-│   ├── ai/                     # Groq SDK client (chatWithGroq, streamWithGroq)
-│   ├── engines/                # Computation engines (Score, Rec, Loan, ROI)
-│   ├── routes/                 # Route handlers (7 route files)
-│   ├── data/                   # JSON datasets (universities, loanRules, salaryData)
-│   ├── middleware/             # Express error handler
-│   └── index.js                # Server entry point (env validation, CORS, route mounting)
-├── .env.example                # Template for required environment variables
-├── .gitignore                  # Git ignore rules
-├── package.json                # Dependencies and scripts
-├── vite.config.js              # Vite config with API proxy
-└── vercel.json                 # Vercel SPA rewrite rules
+GradPath-AI-Career-Navigator/
+├── client/                    # React 19 + Vite frontend
+│   ├── src/
+│   │   ├── components/        # UI components per module
+│   │   ├── pages/             # Route-level views
+│   │   ├── services/          # API client + streaming handlers
+│   │   └── utils/             # Scoring, formatting helpers
+│   └── vite.config.js
+├── server/                    # Express.js backend
+│   ├── routes/                # API route handlers
+│   ├── engines/               # ScoreEngine, RecEngine, LoanEngine, ROIEngine
+│   ├── data/                  # University dataset (JSON), loan rules
+│   ├── middleware/            # Auth, error handling, CORS
+│   └── index.js
+└── README.md
 ```
 
-## Quick Start
-
-1. **Clone**
-```bash
-git clone https://github.com/Hazz-Y/GradPath-AI-Career-Navigator.git && cd GradPath-AI
-```
-
-2. **Install dependencies**
-```bash
-npm install
-```
-
-3. **Configure environment**
-```bash
-cp .env.example .env
-```
-Fill in the values (see Environment Variables below).
-
-4. **Run development servers**
-```bash
-npm run dev
-```
-
-| Service | URL |
-|---|---|
-| Frontend | `http://localhost:5173` |
-| Backend | `http://localhost:3001` |
-
-## Environment Variables
-
-| Variable | Required | Description |
-|---|---|---|
-| `GROQ_API_KEY` | Yes | API key for Groq inference. Obtain at [`console.groq.com`](https://console.groq.com). Server will exit on startup without this value. |
-| `PORT` | No | Server port. Defaults to `3001`. |
-| `FRONTEND_URL` | No | Production frontend URL, added to the CORS allow-list. |
-| `VITE_API_URL` | No | Backend API base URL for the client. In development, Vite proxies `/api` requests automatically. |
-| `VITE_SUPABASE_URL` | No | Supabase project URL. Optional - the app falls back to static mock data when not set. |
-| `VITE_SUPABASE_ANON_KEY` | No | Supabase anonymous key. Optional - required only if `VITE_SUPABASE_URL` is set. |
+---
 
 ## Deployment
 
-**Frontend - Vercel** - Connect the repository to a Vercel project. Set framework preset to Vite. Add all `VITE_`-prefixed environment variables in the Vercel dashboard. Set `VITE_API_URL` to the Render backend URL (e.g., `https://gradpath-api.onrender.com`).
+| Service | URL | Stack |
+|:---|:---|:---|
+| Frontend | [Vercel](https://vercel.com) | React 19 / Vite — Edge CDN |
+| Backend | [Render](https://render.com) | Express.js — Managed Node.js |
 
-**Backend - Render** - Connect the repository to a Render web service. Set the start command to `node server/index.js`. Add `GROQ_API_KEY`, `PORT`, and `FRONTEND_URL` in the Render dashboard. Note: in-memory `LoanOracle` sessions reset on Render's free-tier spin-down; see Known Limitations for the Redis upgrade path.
+Streaming responses from the Groq SDK are piped directly to the client via chunked HTTP transfer encoding, enabling real-time SOP generation and conversational output without buffering the full LLM response.
 
-## Known Limitations
-
-- **University dataset is static.** The current dataset covers 55 programs across 11 countries, stored as a JSON file in `server/data/universities.json`. A production version would require integration with a live database or third-party API (e.g., QS Rankings API, CollegeDunia).
-- **Loan eligibility is rule-based.** `LoanEngine` uses a static NBFC rule set in `server/data/loanRules.json`, not connected to live lender APIs. Production integration would require partnerships with NBFCs (HDFC Credila, Prodigy Finance) and real-time rate feeds.
-- **Conversation sessions are ephemeral.** `LoanOracle` chat sessions are stored in Node.js process memory and are lost on server restart. A Redis-backed session store (e.g., `connect-redis` with Upstash or AWS ElastiCache) would be required for production persistence.
-- **Supabase is optional.** The leaderboard and user profile persistence depend on Supabase. When unconfigured, the app falls back to hardcoded mock data. No user authentication is implemented - production would require OAuth (Google, GitHub) via Supabase Auth.
-
-## Roadmap
-
-- [x] University matching engine (`RecEngine` with cosine similarity)
-- [x] Loan eligibility engine (`LoanEngine` with NBFC rule set)
-- [x] ROI projection engine (`ROIEngine` with 10-year salary model)
-- [x] Dream Score system (5-pillar weighted scoring)
-- [x] Live SOP generation with Groq SDK streaming
-- [x] Referral system with score rewards
-- [x] Supabase optional integration (leaderboard, profiles)
-- [x] Vercel + Render split deployment
-- [ ] Live NBFC API integration (HDFC Credila, Prodigy Finance)
-- [ ] Redis session persistence (`connect-redis` + Upstash)
-- [ ] Expanded university dataset (live database or API)
-- [ ] Mobile-responsive UI polish (sub-640px breakpoints)
-- [ ] OAuth authentication (Google, GitHub via Supabase Auth)
-- [ ] Comparative university shortlist export (PDF)
-- [ ] LLM fine-tuning on Indian student admission data
+---
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+MIT — see [LICENSE](LICENSE) for details.
